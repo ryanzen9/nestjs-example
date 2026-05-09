@@ -43,11 +43,13 @@ export class ConsumerController {
       console.log('收到同步 RPC 请求:', data);
       const isAvailable = true; // 模拟查询库存
 
+      throw new Error('模拟查询失败'); // 模拟查询失败
+
       channel.ack(originalMsg);
       // 返回的值会自动通过 RabbitMQ 回传给发送方
       return { available: isAvailable, stock: 100 };
     } catch (error) {
-      channel.nack(originalMsg, false, true);
+      channel.nack(originalMsg, false, false);
       throw error; // 将错误抛回给调用方
     }
   }
