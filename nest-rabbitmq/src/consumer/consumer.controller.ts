@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment*/
 import { Controller } from '@nestjs/common';
-import { ConsumerService } from './consumer.service';
 import {
   Ctx,
   MessagePattern,
   Payload,
   RmqContext,
 } from '@nestjs/microservices';
+import { ConsumerService } from './consumer.service';
 
 @Controller()
 export class ConsumerController {
@@ -23,7 +23,7 @@ export class ConsumerController {
       // 你的业务逻辑：调用 CommandHandler 等
 
       // 模拟错误
-      throw new Error('模拟处理失败');
+      //   throw new Error('模拟处理失败');
 
       // 成功处理，手动确认
       channel.ack(originalMsg);

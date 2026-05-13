@@ -12,12 +12,12 @@ import { NestjsRabbitmqService } from './nestjs-rabbitmq.service';
           type: 'topic',
         },
       ],
-      uri: 'amqp://admin:secret123@10.0.5.134:5672',
+      uri: 'amqp://admin:admin123@192.168.124.101:5672',
       defaultPublishOptions: {
         persistent: true,
       },
       connectionInitOptions: {
-        wait: true,
+        wait: false,
       },
     }),
   ],

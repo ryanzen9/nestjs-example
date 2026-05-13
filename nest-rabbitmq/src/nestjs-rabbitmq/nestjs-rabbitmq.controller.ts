@@ -6,8 +6,15 @@ export class NestjsRabbitmqController {
   constructor(public readonly amqp: AmqpConnection) {}
 
   @Get()
-  getHello() {
-    return this.amqp.publish('example.exchange', 'example.test', {
+  async getHello() {
+    const data = await this.amqp.request({
+      payload: { message: 'Hello, RPC!' },
+      exchange: 'example.exchange',
+      routingKey: 'example.rpc',
+      timeout: 5000,
+    });
+    console.log('RPC Response:', data);
+    return this.amqp.publish('example.exchange', 'example.publish', {
       message: 'Hello, World!',
     });
   }
